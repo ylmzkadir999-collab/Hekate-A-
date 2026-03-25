@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold-dim: rgba(201, 168, 76, 0.2);
+  --gold-glow: rgba(201, 168, 76, 0.08);
+  --border: rgba(201, 168, 76, 0.15);
+  --glass: rgba(15, 8, 32, 0.75);
+}
+
+/* ── Base ── */
+* { box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; }
+body { cursor: none; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #4A1E6E; border-radius: 2px; }
+* { scrollbar-width: thin; scrollbar-color: #4A1E6E transparent; }
+
+/* ── Custom cursor ── */
+.cursor-dot {
+  @apply fixed w-2.5 h-2.5 rounded-full pointer-events-none z-[9999];
+  background: #E8C56A;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 16px #C9A84C, 0 0 32px rgba(201,168,76,0.3);
+  transition: transform 0.08s;
+}
+.cursor-ring {
+  @apply fixed w-10 h-10 rounded-full pointer-events-none z-[9998];
+  border: 1px solid rgba(201,168,76,0.35);
+  transform: translate(-50%, -50%);
+  transition: all 0.18s ease;
+}
+
+/* ── Glass card ── */
+.glass-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+}
+
+/* ── Gold border glow ── */
+.gold-glow-border {
+  border: 1px solid rgba(201,168,76,0.3);
+  box-shadow: 0 0 20px rgba(201,168,76,0.1), inset 0 0 20px rgba(201,168,76,0.03);
+}
+
+/* ── Nebula background ── */
+.nebula-bg {
+  background:
+    radial-gradient(ellipse 100% 70% at 15% 10%, rgba(30,10,60,0.9) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 90% at 85% 90%, rgba(74,30,110,0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(168,85,247,0.04) 0%, transparent 60%),
+    #04030A;
+}
+
+/* ── Animate message in ── */
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.msg-animate { animation: msgIn 0.4s cubic-bezier(0.23, 1, 0.32, 1) both; }
+
+/* ── Typing dots ── */
+@keyframes dotPulse {
+  0%, 60%, 100% { opacity: 0.25; transform: scale(0.8); }
+  30% { opacity: 1; transform: scale(1.2); }
+}
+.typing-dot { animation: dotPulse 1.5s ease-in-out infinite; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* ── Sigil float ── */
+@keyframes sigilFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); filter: drop-shadow(0 0 24px rgba(201,168,76,0.5)); }
+  50% { transform: translateY(-8px) rotate(3deg); filter: drop-shadow(0 0 40px rgba(201,168,76,0.8)); }
+}
+.sigil-float { animation: sigilFloat 4s ease-in-out infinite; }
+
+/* ── Tarot card hover ── */
+.tarot-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.tarot-card:hover {
+  transform: translateY(-8px) rotate(1.5deg);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.8), 0 0 24px rgba(168,85,247,0.25);
+  border-color: rgba(201,168,76,0.4) !important;
+}
+
+/* ── Prose formatting for AI messages ── */
+.oracle-text strong { color: #E8C56A; }
+.oracle-text em { color: #C084FC; font-style: italic; }
+.oracle-text p { margin-bottom: 0.75rem; }
+.oracle-text p:last-child { margin-bottom: 0; }
+
+/* ── Stripe elements ── */
+.StripeElement {
+  padding: 12px 16px;
+  background: rgba(15,8,32,0.8);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 10px;
+  color: #D1D5DB;
+}
